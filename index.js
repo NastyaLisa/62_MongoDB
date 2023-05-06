@@ -9,19 +9,19 @@ const PORT = 8000;
 
 const app = express();
 
-
-
 mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-
-
 app.get("/", async (req, res) => {
   try {
-    const customers = await Customer.find().populate("product_id", "title price");
-    const htmlCustomers = customers.map(customer => `
+    const customers = await Customer.find().populate(
+      "product_id",
+      "title price"
+    );
+    const htmlCustomers = customers.map(
+      (customer) => `
       <div style="border: 1px solid #000; 
       width: fit-content; 
       margin: 0 0 20px 0; 
@@ -29,7 +29,8 @@ app.get("/", async (req, res) => {
         <p>${customer.name}: ${customer.product_id.title} Price: ${customer.product_id.price} </p>
         
       </div>
-    `);
+    `
+    );
 
     const html = `<h1>Users purchases:</h1> ${htmlCustomers.join("")}`;
     res.send(html);
@@ -38,12 +39,9 @@ app.get("/", async (req, res) => {
   }
 });
 
-
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
-
-
 
 //Lection
 
@@ -52,9 +50,9 @@ app.listen(PORT, () => {
 // try {
 //     const products = await Product.find();
 //     const htmlProducts = products.map(product =>`
-//       <div style="border: 1px solid #000; 
-//       width: fit-content; 
-//       margin: 0 0 20px 0; 
+//       <div style="border: 1px solid #000;
+//       width: fit-content;
+//       margin: 0 0 20px 0;
 //       padding: 0 10px">
 //        <h2>${product.title}</h2>
 //        <p>Price: ${product.price}</p>
@@ -68,8 +66,6 @@ app.listen(PORT, () => {
 // }
 // });
 
-
-
 // mongoose
 //   .connect(url)
 //   .then(() => {
@@ -82,9 +78,6 @@ app.listen(PORT, () => {
 //     console.log(`DB connection error: ${err}`);
 //   });
 
-
-
-
 // const connection = mongoose.createConnection(url, {maxPoolSize: 10})
 // const Product = connection.model('product', productSchema);
 // connection.on('open', () => {
@@ -93,12 +86,10 @@ app.listen(PORT, () => {
 //  console.log(`Server started on http://localhost:${PORT}`);
 //  })
 //  });
- 
+
 //  connection.on('error', (err) => {
 //  console.error(`Database connection error: ${err}`);
 //  });
-
-
 
 //then-catch
 //   app.get("/", (req, res) => {
@@ -106,9 +97,9 @@ app.listen(PORT, () => {
 //       .then((products) => {
 //         const productsHtml = products.map(
 //           (product) => `
-//       <div style="border: 1px solid #000; 
-//       width: fit-content; 
-//       margin: 0 0 20px 0; 
+//       <div style="border: 1px solid #000;
+//       width: fit-content;
+//       margin: 0 0 20px 0;
 //       padding: 0 10px">
 //        <h2>${product.title}</h2>
 //        <p>Price: ${product.price}</p>
@@ -121,7 +112,6 @@ app.listen(PORT, () => {
 //         console.error(error);
 //       });
 //   });
-
 
 // app.get("/", (req, res) => {
 //   res.send("<h1>Wellcome</h1>");

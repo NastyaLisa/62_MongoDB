@@ -13,24 +13,18 @@ const Schema = mongoose.Schema;
 // const Product = mongoose.model("product", productSchema);
 // export { Product, productSchema };
 
-// const mongoose = require("mongoose");
-
-// Определение схемы для коллекции products
-const productSchema = new mongoose.Schema({
+const productSchema = new Schema({
   title: String,
   price: Number,
 });
 
-// Определение схемы для коллекции customers
-const customerSchema = new mongoose.Schema({
+const customerSchema = new Schema({
   name: String,
   product_id: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
 });
 
-// Модель для коллекции products
-export const Product = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema);
 
-// Модель для коллекции customers
-export const Customer = mongoose.model("Customer", customerSchema);
+const Customer = mongoose.model("Customer", customerSchema);
 
-// module.exports = { Product, Customer };
+export { Product, Customer };
